@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,8 @@ public class CrimeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCrime = new Crime();
+        mCrime.setTitle("Hello World!");
+        mCrime.setDate(new Date());
     }
 
     @Nullable
@@ -57,7 +60,8 @@ public class CrimeFragment extends Fragment {
         mDateButton = view.findViewById(R.id.crime_date);
         Date mCrimeDate = mCrime.getDate();
         if (mCrimeDate != null) {
-            mDateButton.setText(mCrimeDate.toString());
+            CharSequence format = DateFormat.format("yyyy-MM-dd HH:mm:ss", mCrimeDate);
+            mDateButton.setText(format.toString());
         } else {
             mDateButton.setText(null);
         }
